@@ -17,16 +17,16 @@ class UserAddForm extends React.Component {
     }
 
     // NU UITATI ca metodele apelate la declansarea unui event primesc automat ca parametru event-ul respectiv
-    updateName = (event) => {
+    updateName(event) {
         // practic, in campul din state corespunzator se stocheaza valoarea introdusa de utilizator
         this.setState({name: event.target.value});
     }
 
-    updateEmail = (event) => {
+    updateEmail(event) {
         this.setState({email: event.target.value});
     }
 
-    updateIsGoldClient = (event) => {
+    updateIsGoldClient (event) {
         // HINT: Daca nu sunteti siguri ce valoare are o anumita variabila, console.log-ati-o!
         // La checkboxuri event.target.value nu ar fi dat rezultatul dorit, avem nevoie de event.target.checked
         console.log(event.target.checked);
@@ -40,6 +40,7 @@ class UserAddForm extends React.Component {
         // ATENTIE! Destructuring-ul se face inainte de return! Ne ajuta sa scriem mai putin cand apelam
         // submitAddForm mai jos!
         const {name, email, isGoldClient} = this.state;
+        const {submitAddForm} = this.props;
 
         return (
             <form
@@ -53,7 +54,7 @@ class UserAddForm extends React.Component {
                 // state-ul din App.js! Cum? this e cheia! (SFAT: consultati teoria la partea asta)
                 // ALSO: functia submitAddForm va fi apelata doar la submit! (Din nou, teoria e importanta) Si
                 // pentru a folosi evenimentul de submit, trebuie pasat ca parametru!
-                onSubmit={ (event) => this.props.submitAddForm(event, name, email, isGoldClient) }
+                onSubmit={(event) => submitAddForm(event, name, email, isGoldClient)}
             >
                 <h2>Adauga utilizatori:</h2>
                 {/* ATENTIE! In JSX, for este pentru structuri repetitive. Pentru for din HTML
@@ -64,20 +65,20 @@ class UserAddForm extends React.Component {
                     name="name"
                     // Cand utilizatorul va tasta ceva nou, se va declansa eventul onChange.
                     // La declansare, se va executa metoda updateName.
-                    onChange={ this.updateName }
+                    onChange={(event) => this.updateName(event)}
                 />
                 <label htmlFor="email">Email:</label>
                 <input
                     type="text"
                     name="email"
-                    onChange={ this.updateEmail }
+                    onChange={(event) => this.updateEmail(event)}
                 />
                 <label htmlFor="is-gold-client">Client GOLD</label>
                 <input
                     type="checkbox"
                     name="is-gold-client"
                     value="true"
-                    onChange={ this.updateIsGoldClient }
+                    onChange={(event) => this.updateIsGoldClient(event)}
                 />
 
                 <input type="submit" value="Introdu utilizatorul"/>

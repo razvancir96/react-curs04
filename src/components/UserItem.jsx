@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Observatie: Componenta UserItem a redevenit o componenta declarata cu function
-const UserItem = function(props) {
+function UserItem(props) {
     const {name, email, isGoldClient} = props;
 
     return (
