@@ -1,6 +1,6 @@
 import React from 'react';
 import UserList from './components/UserList';
-// importam formularul
+// Importam formularul.
 import UserAddForm from './components/UserAddForm';
 import './App.css';
 
@@ -9,11 +9,10 @@ class App extends React.Component {
     super();
     this.state = {
       background: 'white',
-      // Pentru acest curs am renuntat la userii predefiniti. Toti userii sunt veniti din API.
       users: []
     };
 
-    // in cazul in care nu folosim arrow functions la declararea functiilor pasate catre alte componente,
+    // In cazul in care nu folosim arrow functions la declararea functiilor pasate catre alte componente,
     // ar trebuie sa facem bind in constructor. Ce face bind? Vizitati TEORIA!
     this.BINDED_submitAddForm = this.BINDED_submitAddForm.bind(this);
   }
@@ -59,7 +58,7 @@ class App extends React.Component {
     return maxId;
   }
 
-  // ATENTIE! Functia submitAddForm este apelata din componenta userAddForm. Respectivei componente trebuie sa ii
+  // ATENTIE! Metoda submitAddForm este apelata din componenta userAddForm. Respectivei componente trebuie sa ii
   // pasam functia ca props. Nu uitati ca la declansarea unui event, pe langa parametri primiti de functia asociata
   // eventului respectiv, primul parametru primit este chiar evenimentul!
   submitAddForm(event, name, email, isGoldClient) {
@@ -70,14 +69,14 @@ class App extends React.Component {
     // Cand setState primeste ca parametru o functie, functia respectiva primeste ca parametru state-ul de dinaintea
     // aplicarii setState-ului curent.
     this.setState(prevState => {
-      // functia trebuie sa returneze un obiect care are ca cheie campul din state care va fi modificat.
+      // Functia trebuie sa returneze un obiect care are ca cheie campul din state care va fi modificat.
       return {
         // ATENTIE! Facemn Array destructuring si apoi compunem un nou array care contine userii din state-ul anterior,
         // la care adaugam un nou user cu atributele venite din formular. Astfel, actualizam campul users din state.
         users: [
           ...prevState.users,
           {
-            // pentru id luam valoarea maxima din state-ul precedent si il incrementam cu 1
+            // Pentru id luam valoarea maxima din state-ul precedent si il incrementam cu 1.
             id: this.getMaxId(prevState.users) + 1,
             name,
             email,
@@ -149,24 +148,24 @@ class App extends React.Component {
         {/* De ce am inclus componenta UserAddForm in App.js? UserAddForm va modifica state-ul lui App! */}
         {/* Trebuie sa pasam DEFINITIA functiei submitAddForm ca prop catre UserAddForm. Ulterior, in UserAddForm,
         submitAddForm va fi executata. ATENTIE! Cand extragem in UserAddForm functia pasata ca props cu
-        this.props.submitAddForm, numele din this.props trebuie sa fie acelasi cu numele atributului pasat aici*/}
+        this.props.submitAddForm, numele din this.props trebuie sa fie acelasi cu numele atributului pasat aici. */}
         {/* De asemenea, nu uitați că la pasarea funcției trebuie să folosim arrow functions pentru ca this să
-        refere în continuare la App.js!!! Iar dacă folosim arrow functions, trebuie să pasăm și parametri corespunzători!*/}
+        refere în continuare la App.js!!! Iar dacă folosim arrow functions, trebuie să pasăm și parametri corespunzători! */}
         <UserAddForm submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}/>
 
         {/* Decomentati linia de mai jos si comentati UserAddForm-ul de mai sus pentru a testa functia
-        WRONG_submitAddForm */}
+        WRONG_submitAddForm. */}
         {/* <UserAddForm submitAddForm={this.WRONG_submitAddForm}/> */}
 
         {/* Decomentati linia de mai jos si comentati UserAddForm-ul de mai sus pentru a testa functia
-        BINDED_submitAddForm */}
+        BINDED_submitAddForm. */}
         {/* <UserAddForm submitAddForm={this.BINDED_submitAddForm}/> */}
 
         {/* Decomentati linia de mai jos si comentati UserAddForm-ul de mai sus pentru a testa functia
-        NOT_RECOMMENDED_submitAddForm */}
+        NOT_RECOMMENDED_submitAddForm. */}
         {/* <UserAddForm submitAddForm={this.NOT_RECOMMENDED_submitAddForm}/> */}
 
-        {/* Randam componenta UserList, careia ii trimitem ca proprietati userii din state.*/}
+        {/* Randam componenta UserList, careia ii trimitem ca proprietati userii din state. */}
         <UserList users={this.state.users}/>
 
         <input type="color" onChange={(event) => this.changeColor(event)}/>

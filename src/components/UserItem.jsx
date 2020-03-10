@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Observatie: Componenta UserItem a redevenit o componenta declarata cu function
 function UserItem(props) {
     const {name, email, isGoldClient} = props;
 

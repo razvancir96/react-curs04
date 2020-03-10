@@ -16,9 +16,9 @@ class UserAddForm extends React.Component {
         };
     }
 
-    // NU UITATI ca metodele apelate la declansarea unui event primesc automat ca parametru event-ul respectiv
+    // NU UITATI ca metodele apelate la declansarea unui event primesc automat ca parametru event-ul respectiv.
     updateName(event) {
-        // practic, in campul din state corespunzator se stocheaza valoarea introdusa de utilizator
+        // Practic, in campul din state corespunzator se stocheaza valoarea introdusa de utilizator.
         this.setState({name: event.target.value});
     }
 
@@ -28,7 +28,7 @@ class UserAddForm extends React.Component {
 
     updateIsGoldClient (event) {
         // HINT: Daca nu sunteti siguri ce valoare are o anumita variabila, console.log-ati-o!
-        // La checkboxuri event.target.value nu ar fi dat rezultatul dorit, avem nevoie de event.target.checked
+        // La checkboxuri event.target.value nu ar fi dat rezultatul dorit, avem nevoie de event.target.checked.
         console.log(event.target.checked);
         // ATENTIE! Niciodata sa includeti this.state in interiorul lui this.setState()
         // this.setState({isGoldClient: !this.state.isGoldClient}) NU FACETI ASTA!

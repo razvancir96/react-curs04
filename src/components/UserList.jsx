@@ -1,6 +1,7 @@
 import React from 'react';
 import UserItem from './UserItem';
 
+// Observatie: Componenta UserList a redevenit o componenta declarata cu function.
 function UserList(props) {
     const { users } = props;
 
